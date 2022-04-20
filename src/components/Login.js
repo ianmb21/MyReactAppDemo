@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Button, Card, CardContent, TextField, Typography } from "@material-ui/core"
+import { Button, Card, CardActions, CardContent, TextField, Typography, Box } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import * as actions from "../actions/login";
 import useForm from "../hooks/useLoginForm";
@@ -40,9 +40,9 @@ export default function Login() {
         
                 navigate(`/Employee`);
             })
-            .catch(() => {
-                //setLoading(false);
-            });
+            // .catch(() => {
+
+            // });
     }
 
     const validateFields = () => {
@@ -54,18 +54,20 @@ export default function Login() {
     }
 
     return (
-            <Card sx={{ width: 400 }}>
+        <Box width='400px' pt={2}>
+            <Card>
                 <CardContent sx={{ textAlign: 'center' }}>
-                    <Typography variant="h3" sx={{ my: 3 }}>
+                    <Typography variant="h4" sx={{ my: 3 }}>
                         Login
                     </Typography>
-                        <form noValidate autoComplete="off" onSubmit={handleLogin}>
+                        <form noValidate autoComplete="off" style={{ padding: 4 }}>
                             <TextField
                                 label="Username"
                                 name="username"
                                 value={values.username}
                                 onChange={handleInputChange}
                                 variant="outlined"
+                                style={{ padding: 4 }}
                                 {...(errors.username && { error: true, helperText: errors.username })} />
                             <TextField
                                 label="Password"
@@ -74,16 +76,19 @@ export default function Login() {
                                 value={values.password}
                                 onChange={handleInputChange}
                                 variant="outlined"
-                                {...(errors.password && { error: true, helperText: errors.password })} />
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                size="large"
-                                sx={{ width: '90%' }}>Submit</Button>
+                                style={{ padding: 4 }}
+                                {...(errors.password && { error: true, helperText: errors.password })} />                
                         </form>
                 </CardContent>
+                <CardActions>
+                    <Button onClick={handleLogin}
+                        type="submit"
+                        variant="contained"
+                        size="large"
+                        sx={{ width: '90%' }}>Submit</Button>
+                </CardActions>
             </Card>
-
+        </Box>
 
     )
 }

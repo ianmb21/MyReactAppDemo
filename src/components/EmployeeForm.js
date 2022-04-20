@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText } from "@material-ui/core";
 import useForm from "../hooks/useEmployeeForm";
 import { connect } from "react-redux";
@@ -70,9 +70,9 @@ const EmployeeForm = ({ classes, ...props }) => {
     } = useForm(initialFieldValues, validate, props.setCurrentId)
 
     //material-ui select
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
+    const inputLabel = useRef(null);
+    const [labelWidth, setLabelWidth] = useState(0);
+    useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
 
@@ -187,13 +187,13 @@ const EmployeeForm = ({ classes, ...props }) => {
                         >
                             Reset
                         </Button>
-                        <Button
+                        {/* <Button
                             variant="contained"
                             className={classes.smMargin}
                             onClick={handleLogout}
                         >
                             Logout
-                        </Button>
+                        </Button> */}
                     </div>
                 </Grid>
             </Grid>
